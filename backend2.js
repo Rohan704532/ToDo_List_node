@@ -31,7 +31,8 @@ const list = new mongoose.model("List", todoSchema)
 
 app.post('/add', async (req, res) => {
     const { title } = req.body;
-    //console.log(title)
+    console.log("Rohan")
+    console.log(req.body)
     const List = await list.create(req.body)
     res.status(200).json({
         success: true,

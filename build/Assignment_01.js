@@ -71,7 +71,7 @@ for(i=0;i<nodelist.length;i++){
 }*/
 window.onload = (event) => {
 
-    fetch("http://localhost:3000/get",{
+    fetch("https://rohan704532-todo-list-node.onrender.com/get",{
         method:"GET"
     }).then((resp)=>{
         resp.json().then((data)=>{
@@ -102,7 +102,7 @@ window.onload = (event) => {
             //let classLi = document.getElementsByClassName('li')
             //console.log(word)
 
-            fetch("http://localhost:3000/deleteId",{
+            fetch("https://rohan704532-todo-list-node.onrender.com/deleteId",{
                 method:"DELETE",
                 body:JSON.stringify({
                     title:word
@@ -132,7 +132,7 @@ window.onload = (event) => {
 
 function newTask() {
         let inputValue = document.getElementById("name").value;
-        fetch("http://localhost:3000/add",{
+        fetch("https://rohan704532-todo-list-node.onrender.com/add",{
             method:"POST",
             body:JSON.stringify({
                 title:inputValue
@@ -141,10 +141,10 @@ function newTask() {
                 "Content-Type":"application/json"
             }
         }).then((resp)=>{
-            resp.json().then((data)=>{
-                //console.log(data)
-            })
+            console.log(resp)
         })
+
+
         location.reload();
         let li = document.createElement("li")
         li.className = "Li"
@@ -178,7 +178,7 @@ function newTask() {
             //let classLi = document.getElementsByClassName('li')
             //console.log(word)
 
-            fetch("http://localhost:3000/deleteId",{
+            fetch("https://rohan704532-todo-list-node.onrender.com/deleteId",{
                 method:"DELETE",
                 body:JSON.stringify({
                     title:word
@@ -201,7 +201,7 @@ function newTask() {
     }
 
     function Delete() {
-        fetch("http://localhost:3000/deleteAll",{
+        fetch("https://rohan704532-todo-list-node.onrender.com/deleteAll",{
             method:"DELETE"
         }).then((resp)=>{
             resp.json().then((data)=>{
@@ -259,7 +259,7 @@ function newTask() {
             //let classLi = document.getElementsByClassName('li')
             //console.log(word)
 
-            fetch("http://localhost:3000/deleteId",{
+            fetch("https://rohan704532-todo-list-node.onrender.com/deleteId",{
                 method:"DELETE",
                 body:JSON.stringify({
                     title:word
