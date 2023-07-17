@@ -51,8 +51,12 @@ app.post('/addp', async (req, res) => {
 
 
 app.get('/get', async (req, res) => {
-    const todos = await list.find();
-    res.status(200).json({ success: true, todos })
+    try{
+        const todos = await list.find();
+        res.status(200).json({ success: true, todos })
+    }catch(err){
+        console.log(err)
+    }
 })
 
 app.delete('/deleteId', async (req, res) => {
