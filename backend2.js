@@ -8,10 +8,15 @@ app.use(express.json())
 const cors = require("cors");
 app.use(cors());
 
+
+dotenv.config({path:'./config.env'})
+const PORT = process.env.PORT || 3000
+
+app.use(express.static("build"))
 const USERNAME=process.env.DB_USERNAME
 const PASSWORD=process.env.DB_PASSWORD
 
-DB = `mongodb+srv://${USERNAME}:${PASSWORD}@todo-list-node.ry2mpau.mongodb.net/`
+DB = `mongodb+srv://${USERNAME}:${PASSWORD}@todo-list-node.7lpais6.mongodb.net/`
 mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     console.log("connected with mongodb")
 }).catch((err) => {
@@ -85,10 +90,7 @@ app.delete('/deleteAll', async (req, res) => {
     }
 })
 
-dotenv.config({path:'./config.env'})
-const PORT = process.env.PORT || 3000
 
-app.use(express.static("build"))
 
 app.listen(PORT, () => {
     console.log(`server is  working on ${PORT}`)
