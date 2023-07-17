@@ -9,12 +9,12 @@ const cors = require("cors");
 app.use(cors());
 
 
-dotenv.config({path:'./config.env'})
+dotenv.config({ path: './config.env' })
 const PORT = process.env.PORT || 3000
 
 app.use(express.static("build"))
-const USERNAME=process.env.DB_USERNAME
-const PASSWORD=process.env.DB_PASSWORD
+const USERNAME = process.env.DB_USERNAME
+const PASSWORD = process.env.DB_PASSWORD
 
 DB = `mongodb+srv://${USERNAME}:${PASSWORD}@todo-list-node.7lpais6.mongodb.net/`
 mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
@@ -30,54 +30,63 @@ const todoSchema = mongoose.Schema({
 const list = new mongoose.model("List", todoSchema)
 
 app.post('/add', async (req, res) => {
-    const { title } = req.body;
-    console.log("Rohan")
-    console.log(req.body)
-    const List = await list.create(req.body)
-    res.status(200).json({
-        success: true,
-        List
-    })
+    try {
+        const List = await list.create(req.body)
+        res.status(200).json({
+            success: true,
+            List
+        })
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 app.post('/addp', async (req, res) => {
     const { title } = req.body;
-    //console.log(title)
-    const List = await list.updateOne({$push:{$each:title,$position:0}})
-    res.status(200).json({
-        success: true,
-        List
-    })
+    try {
+        const List = await list.updateOne({ $push: { $each: title, $position: 0 } })
+        res.status(200).json({
+            success: true,
+            List
+        })
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 
 app.get('/get', async (req, res) => {
-    try{
+    try {
         const todos = await list.find();
         res.status(200).json({ success: true, todos })
-    }catch(err){
+    } catch (err) {
         console.log(err)
     }
 })
 
 app.delete('/deleteId', async (req, res) => {
+    try {
     todo = await list.find({ title: req.body.title })
-    if (todo.length == 0) {
-        return res.status(500).json({
-            success: false,
-            message: "Product not found"
-        })
-    } else {
-        await list.deleteMany({ title: req.body.title })
-        return res.status(200).json({
-            success: true,
-            message: "Product is deleted successfully"
-        })
+        if (todo.length == 0) {
+            return res.status(500).json({
+                success: false,
+                message: "Product not found"
+            })
+        } else {
+            await list.deleteMany({ title: req.body.title })
+            return res.status(200).json({
+                success: true,
+                message: "Product is deleted successfully"
+            })
+        }
+    } catch (err) {
+        console.log(err)
     }
 
 })
 
 app.delete('/deleteAll', async (req, res) => {
+    try{
     const todos = await list.find();
     await list.deleteMany()
 
@@ -93,6 +102,9 @@ app.delete('/deleteAll', async (req, res) => {
             message: "deleted all"
         })
     }
+}catch(err){
+    console.log(err)
+}
 })
 
 

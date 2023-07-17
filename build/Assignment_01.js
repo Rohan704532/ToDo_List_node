@@ -132,6 +132,7 @@ window.onload = (event) => {
 
 function newTask() {
         let inputValue = document.getElementById("name").value;
+        console.log(inputValue)
         fetch("https://rohan704532-todo-list-node.onrender.com/add",{
             method:"POST",
             body:JSON.stringify({
