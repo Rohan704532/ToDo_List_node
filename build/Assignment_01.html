@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Assignment_01.css">
+    <title>To do list</title>
+</head>
+
+<body>
+    <div class="heading">
+        <h1>Welcome to ToDo List App</h1>
+    </div>
+    <div class="main">
+        <div class="left">
+            <h1 class="lefth1">
+                ToDO list
+            </h1>
+            <div class="input">
+                <input type="text" id="name" name="name" size="20" placeholder="Enter name of the item">
+            </div>
+            <div class="buttons">
+                <button onclick="newTask()" class="Add" type="button">Add task</button>
+                <button onclick = "Priority()" class="Pri" type="button">Add Priority</button>
+                <button onclick="Delete()" class="Del" type="button">Delete all task</button>
+            </div>
+        </div>
+        <div class="vi"></div>
+        <div class="right">
+            <h1>Your list</h1>
+            <ul id="ul">
+            </ul>
+        </div>
+    </div>
+    <script src="./Assignment_01.js"></script>
+</body>
+
+</html>
