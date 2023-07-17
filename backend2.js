@@ -91,5 +91,5 @@ const PORT = process.env.PORT || 3000
 app.use(express.static("build"))
 
 app.listen(PORT, () => {
-    console.log("server is  working on 3000")
+    console.log(`server is  working on ${PORT}`)
 })
